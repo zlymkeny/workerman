@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerFinder | Professional Job Search</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">CareerFinder</div>
+            <nav class="nav">
+                <a href="#">Home</a>
+                <a href="#">Jobs</a>
+                <a href="#">Companies</a>
+                <a href="#">Career Tips</a>
+                <button class="btn btn-secondary">Sign In</button>
+                <button class="btn btn-primary">Register</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h1>Find Your Dream Job Today</h1>
+                <p>Search through thousands of job listings to find the perfect match for your skills and experience.</p>
+                
+                <div class="search-box">
+                    <div class="search-field">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Job title, keywords, or company" id="job-search">
+                    </div>
+                    <div class="search-field">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" placeholder="Location" id="location">
+                    </div>
+                    <button class="btn btn-primary" id="search-btn">Search Jobs</button>
+                </div>
+                
+                <div class="popular-searches">
+                    <span>Popular searches: </span>
+                    <a href="#">Software Engineer</a>
+                    <a href="#">Marketing Manager</a>
+                    <a href="#">Data Analyst</a>
+                    <a href="#">Product Designer</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="job-listings container">
+            <h2>Latest Job Openings</h2>
+            <div class="filters">
+                <select id="job-type">
+                    <option value="">All Job Types</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="remote">Remote</option>
+                    <option value="contract">Contract</option>
+                </select>
+                <select id="experience-level">
+                    <option value="">All Experience Levels</option>
+                    <option value="entry">Entry Level</option>
+                    <option value="mid">Mid Level</option>
+                    <option value="senior">Senior Level</option>
+                </select>
+            </div>
+            
+            <div class="jobs-container" id="jobs-container">
+                <!-- Jobs will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="pagination">
+                <button class="btn btn-secondary" id="prev-btn">Previous</button>
+                <span id="page-info">Page 1 of 5</span>
+                <button class="btn btn-secondary" id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CareerFinder</h3>
+                    <p>Connecting talent with opportunity since 2023.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>For Job Seekers</h4>
+                    <a href="#">Browse Jobs</a>
+                    <a href="#">Create Profile</a>
+                    <a href="#">Job Alerts</a>
+                </div>
+                <div class="footer-section">
+                    <h4>For Employers</h4>
+                    <a href="#">Post a Job</a>
+                    <a href="#">Browse Candidates</a>
+                    <a href="#">Pricing</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CareerFinder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Nexus - Your Job Search Partner</title>
+    <!-- Google Fonts: Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #4f46e5; /* Indigo */
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #6b7280; /* Gray */
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        header nav a:hover {
+            color: #3730a3; /* Darker indigo */
+            background-color: #e0e7ff; /* Light indigo background on hover */
+        }
+
+        /* Search Form Section */
+        .search-section {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.875em; /* sm text */
+            font-weight: 600;
+            color: #4b5563; /* Darker gray */
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; /* Light gray icon */
+            font-size: 1.1em;
+        }
+
+        .search-form input,
+        .search-form select {
+            width: 100%;
+            padding: 12px 15px 12px 45px; /* Adjust padding for icon */
+            border: 1px solid #d1d5db; /* Light gray border */
+            border-radius: 6px;
+            font-size: 1em;
+            color: #374151;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none; /* Remove default select arrow */
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #fff;
+        }
+
+        .search-form input:focus,
+        .search-form select:focus {
+            outline: none;
+            border-color: #6366f1; /* Indigo focus */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* Soft shadow */
+        }
+
+        /* Custom arrow for select element */
+        .input-wrapper select {
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%236b7280" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 1.2em;
+        }
+
+
+        .search-form button {
+            width: 100%;
+            padding: 12px 25px;
+            background-color: #4f46e5; /* Indigo */
+            color: #ffffff;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #3730a3; /* Darker indigo */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Job Listings Section */
+        .job-listings-section {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .job-listings-section h2 {
+            font-size: 2em;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 25px;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .job-card {
+            background-color: #f9fafb; /* Lightest gray */
+            border: 1px solid #e5e7eb; /* Lighter gray border */
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .job-card h3 {
+            color: #4f46e5; /* Indigo */
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .job-card p {
+            color: #4b5563; /* Darker gray */
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-card p i {
+            margin-right: 10px;
+            color: #6b7280; /* Gray icon */
+            font-size: 1.1em;
+        }
+
+        .job-card .description {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #4b5563;
+            margin-bottom: 15px;
+            /* Limit lines for description */
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Show up to 3 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .job-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875em;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .job-card-footer a {
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-card-footer a:hover {
+            color: #3730a3;
+        }
+
+        .job-card-footer a i {
+            margin-left: 8px;
+        }
+
+        .no-jobs-message {
+            text-align: center;
+            color: #6b7280;
+            padding: 50px 0;
+            font-size: 1.1em;
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 640px) { /* Small screens (sm) */
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            header h1 {
+                margin-bottom: 0;
+            }
+            header nav ul {
+                justify-content: flex-start;
+            }
+            .search-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .job-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) { /* Medium screens (md) */
+            .search-form {
+                grid-template-columns: repeat(3, 1fr) 0.5fr; /* 3 inputs + 1 button */
+            }
+            .job-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) { /* Large screens (lg) */
+            .search-form {
+                grid-template-columns: repeat(4, 1fr); /* 3 inputs + 1 button */
+            }
+            .job-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Job Nexus</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Search Form Section -->
+        <section class="search-section">
+            <form id="job-search-form" class="search-form">
+                <div class="form-group">
+                    <label for="search-term">Job Title / Keyword</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-term" placeholder="e.g., Software Engineer">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location-term">Location</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="location-term" placeholder="e.g., New York, Remote">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="job-category">Category</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-briefcase"></i>
+                        <select id="job-category">
+                            <option value="">All Categories</option>
+                            <option value="Software Development">Software Development</option>
+                            <option value="Product Management">Product Management</option>
+                            <option value="Design">Design</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit">Find Jobs</button>
+            </form>
+        </section>
+
+        <!-- Job Listings Section -->
+        <section class="job-listings-section">
+            <h2 id="job-count">Available Jobs (0)</h2>
+            <div id="job-list" class="job-grid">
+                <!-- Job cards will be inserted here by JavaScript -->
+            </div>
+            <p id="no-jobs-message" class="no-jobs-message" style="display: none;">No jobs found matching your criteria. Try adjusting your search.</p>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; <span id="current-year"></span> Job Nexus. All rights reserved.</p>
+            <p>Made with ❤️ for your job search.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchTermInput = document.getElementById('search-term');
+            const locationTermInput = document.getElementById('location-term');
+            const jobCategorySelect = document.getElementById('job-category');
+            const jobSearchForm = document.getElementById('job-search-form');
+            const jobListingsContainer = document.getElementById('job-list');
+            const jobCountElement = document.getElementById('job-count');
+            const noJobsMessage = document.getElementById('no-jobs-message');
+            const currentYearElement = document.getElementById('current-year');
+
+            currentYearElement.textContent = new Date().getFullYear();
+
+            // Dummy job data
+            const allJobs = [
+                {
+                    id: '1',
+                    title: 'Senior Software Engineer',
+                    company: 'Tech Solutions Inc.',
+                    location: 'San Francisco, CA',
+                    category: 'Software Development',
+                    salary: '$150,000 - $180,000',
+                    description: 'We are looking for a highly skilled Senior Software Engineer to join our dynamic team and build scalable, high-performance applications. Experience with cloud platforms (AWS, Azure, GCP) and microservices architecture is a plus. Strong problem-solving skills and a passion for clean code are essential.',
+                    link: 'https://example.com/job1',
+                    postedDate: '2 days ago'
+                },
+                {
+                    id: '2',
+                    title: 'Product Manager',
+                    company: 'Innovate Co.',
+                    location: 'New York, NY',
+                    category: 'Product Management',
+                    salary: '$130,000 - $160,000',
+                    description: 'Seeking an experienced Product Manager to lead our new product initiatives from conception to launch. You will define product vision, strategy, and roadmap, working closely with engineering, design, and marketing teams to deliver exceptional user experiences.',
+                    link: 'https://example.com/job2',
+                    postedDate: '5 days ago'
+                },
+                {
+                    id: '3',
+                    title: 'UX/UI Designer',
+                    company: 'Creative Agency',
+                    location: 'Los Angeles, CA',
+                    category: 'Design',
+                    salary: '$90,000 - $110,000',
+                    description: 'Join our design team to create intuitive and beautiful user experiences for our diverse client base. You will conduct user research, create wireframes, prototypes, and high-fidelity designs, ensuring design consistency and usability across all platforms.',
+                    link: 'https://example.com/job3',
+                    postedDate: '1 week ago'
+                },
+                {
+                    id: '4',
+                    title: 'Data Scientist',
+                    company: 'Data Insights Corp.',
+                    location: 'Seattle, WA',
+                    category: 'Data Science',
+                    salary: '$140,000 - $170,000',
+                    description: 'Opportunity for a talented Data Scientist to work on challenging analytical problems, building predictive models and developing data-driven insights. Proficiency in Python or R, SQL, and machine learning frameworks is required.',
+                    link: 'https://example.com/job4',
+                    postedDate: '3 days ago'
+                },
+                {
+                    id: '5',
+                    title: 'Marketing Specialist',
+                    company: 'Growth Strategies Ltd.',
+                    location: 'Austin, TX',
+                    category: 'Marketing',
+                    salary: '$70,000 - $90,000',
+                    description: 'Energetic Marketing Specialist needed to develop and execute comprehensive marketing campaigns across various channels, including digital, social media, and content marketing. Excellent communication and analytical skills are a must.',
+                    link: 'https://example.com/job5',
+                    postedDate: '4 days ago'
+                },
+                {
+                    id: '6',
+                    title: 'DevOps Engineer',
+                    company: 'Cloud Innovators',
+                    location: 'Remote',
+                    category: 'Software Development',
+                    salary: '$120,000 - $150,000',
+                    description: 'We are seeking a skilled DevOps Engineer to help build and maintain our scalable cloud infrastructure. You will be responsible for CI/CD pipelines, automation, monitoring, and ensuring system reliability and performance.',
+                    link: 'https://example.com/job6',
+                    postedDate: '1 day ago'
+                },
+                {
+                    id: '7',
+                    title: 'Full Stack Developer',
+                    company: 'Web Wizards',
+                    location: 'Chicago, IL',
+                    category: 'Software Development',
+                    salary: '$110,000 - $140,000',
+                    description: 'Looking for a passionate Full Stack Developer with experience in modern web technologies (React/Vue, Node.js/Python, database design). You will contribute to all layers of our web applications.',
+                    link: 'https://example.com/job7',
+                    postedDate: '6 days ago'
+                },
+                {
+                    id: '8',
+                    title: 'UI Developer',
+                    company: 'Frontend Masters',
+                    location: 'Boston, MA',
+                    category: 'Software Development',
+                    salary: '$100,000 - $130,000',
+                    description: 'Join our team as a UI Developer and create amazing user interfaces for our web applications. Strong understanding of HTML, CSS, JavaScript, and modern front-end frameworks is essential.',
+                    link: 'https://example.com/job8',
+                    postedDate: '2 weeks ago'
+                },
+                {
+                    id: '9',
+                    title: 'Content Creator',
+                    company: 'Digital Storytellers',
+                    location: 'Remote',
+                    category: 'Marketing',
+                    salary: '$60,000 - $80,000',
+                    description: 'We need a creative Content Creator to develop engaging written and visual content for our digital platforms. Experience with SEO and social media content is a plus.',
+                    link: 'https://example.com/job9',
+                    postedDate: '1 month ago'
+                },
+                {
+                    id: '10',
+                    title: 'Cloud Architect',
+                    company: 'NextGen Solutions',
+                    location: 'Denver, CO',
+                    category: 'Software Development',
+                    salary: '$160,000 - $200,000',
+                    description: 'Design and implement robust cloud solutions on AWS, Azure, or GCP. Requires deep understanding of cloud architecture, security, and best practices.',
+                    link: 'https://example.com/job10',
+                    postedDate: '3 days ago'
+                }
+            ];
+
+            let filteredJobs = [...allJobs]; // Initialize with all jobs
+
+            function renderJobs(jobs) {
+                jobListingsContainer.innerHTML = ''; // Clear previous listings
+                if (jobs.length === 0) {
+                    noJobsMessage.style.display = 'block';
+                } else {
+                    noJobsMessage.style.display = 'none';
+                    jobs.forEach(job => {
+                        const jobCard = document.createElement('div');
+                        jobCard.classList.add('job-card');
+                        jobCard.innerHTML = `
+                            <div>
+                                <h3>${job.title}</h3>
+                                <p><i class="fas fa-building"></i> ${job.company}</p>
+                                <p><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
+                                <p><i class="fas fa-dollar-sign"></i> ${job.salary}</p>
+                                <p class="description">${job.description}</p>
+                            </div>
+                            <div class="job-card-footer">
+                                <span>Posted: ${job.postedDate}</span>
+                                <a href="${job.link}" target="_blank" rel="noopener noreferrer">
+                                    View Details <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        `;
+                        jobListingsContainer.appendChild(jobCard);
+                    });
+                }
+                jobCountElement.textContent = `Available Jobs (${jobs.length})`;
+            }
+
+            function filterJobs() {
+                const searchTerm = searchTermInput.value.toLowerCase();
+                const locationTerm = locationTermInput.value.toLowerCase();
+                const jobCategory = jobCategorySelect.value;
+
+                filteredJobs = allJobs.filter(job =>
+                    job.title.toLowerCase().includes(searchTerm) &&
+                    job.location.toLowerCase().includes(locationTerm) &&
+                    (jobCategory === '' || job.category === jobCategory)
+                );
+
+                renderJobs(filteredJobs);
+            }
+
+            // Initial render of all jobs
+            renderJobs(allJobs);
+
+            // Event Listeners for filtering
+            jobSearchForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission
+                filterJobs();
+            });
+
+            searchTermInput.addEventListener('input', filterJobs);
+            locationTermInput.addEventListener('input', filterJobs);
+            jobCategorySelect.addEventListener('change', filterJobs);
+        });
+    </script>
+</body>
+</html>

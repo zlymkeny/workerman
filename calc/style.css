@@ -1,0 +1,20 @@
+h1{
+    text-align: center;
+    background-color: aqua;
+    background-size: contain;
+
+}
+
+p{
+    color: blue;
+    text-align: center;
+}
+
+button{
+    color: rgb(17, 17, 17);
+    background-color: antiquewhite;
+}
+
+form{
+    position: absolute;
+}
